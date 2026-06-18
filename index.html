@@ -1,102 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Calculator</title>
+
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
 body{
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:#f0f0f0;
-font-family:Arial;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
 }
+
 .calculator{
-background:#222;
-padding:20px;
-border-radius:10px;
-width:280px;
+    background:#222;
+    padding:20px;
+    border-radius:15px;
+    width:320px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
+
+.profile-photo{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #fff;
+    margin-bottom:10px;
+}
+
+.name{
+    color:white;
+    margin-bottom:15px;
+    font-size:18px;
+    font-weight:bold;
+}
+
 #display{
-width:100%;
-height:50px;
-font-size:24px;
-text-align:right;
-margin-bottom:10px;
+    width:100%;
+    height:60px;
+    border:none;
+    border-radius:8px;
+    margin-bottom:15px;
+    font-size:24px;
+    text-align:right;
+    padding:10px;
+    background:#f5f5f5;
 }
+
 .buttons{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
 }
+
 button{
-height:50px;
-font-size:18px;
-border:none;
-background:#444;
-color:white;
-border-radius:5px;
-cursor:pointer;
+    height:60px;
+    border:none;
+    border-radius:8px;
+    font-size:20px;
+    cursor:pointer;
+    background:#444;
+    color:white;
+    transition:0.2s;
 }
+
 button:hover{
-background:#666;
+    background:#666;
 }
-  .name{
-    color: #fff;
-  }
+
+.operator{
+    background:#ff9500;
+}
+
+.operator:hover{
+    background:#e68500;
+}
+
+.equal{
+    background:#28a745;
+}
+
+.equal:hover{
+    background:#218838;
+}
+
+.clear{
+    background:#dc3545;
+}
+
+.clear:hover{
+    background:#c82333;
+}
 </style>
 </head>
 <body>
 
 <div class="calculator">
-  <h1 class="name"> Lucky Dholpure Jhonker Wale</h1>
-<input type="text" id="display" readonly>
-<div class="buttons">
-<button onclick="clearDisplay()">C</button>
-<button onclick="appendValue('/')">/</button>
-<button onclick="appendValue('*')">*</button>
-<button onclick="deleteLast()">⌫</button>
 
-<button onclick="appendValue('7')">7</button>
-<button onclick="appendValue('8')">8</button>
-<button onclick="appendValue('9')">9</button>
-<button onclick="appendValue('-')">-</button>
+    <!-- Your Photo -->
+    <img src="C:\Users\ldhol\Desktop\img.jpeg" alt="My Photo" class="profile-photo">
 
-<button onclick="appendValue('4')">4</button>
-<button onclick="appendValue('5')">5</button>
-<button onclick="appendValue('6')">6</button>
-<button onclick="appendValue('+')">+</button>
+    <!-- Your Name -->
+    <div class="name">Your Name</div>
 
-<button onclick="appendValue('1')">1</button>
-<button onclick="appendValue('2')">2</button>
-<button onclick="appendValue('3')">3</button>
-<button onclick="calculate()">=</button>
+    <!-- Display -->
+    <input type="text" id="display" readonly>
 
-<button onclick="appendValue('0')">0</button>
-<button onclick="appendValue('.')">.</button>
-</div>
+    <!-- Buttons -->
+    <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+        <button class="operator" onclick="appendValue('*')">×</button>
+        <button class="operator" onclick="deleteLast()">⌫</button>
+
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button class="operator" onclick="appendValue('-')">−</button>
+
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button class="equal" onclick="calculate()">=</button>
+
+        <button style="grid-column:span 2;" onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+    </div>
+
 </div>
 
 <script>
 const display = document.getElementById("display");
 
 function appendValue(value){
-display.value += value;
+    display.value += value;
 }
 
 function clearDisplay(){
-display.value = "";
+    display.value = "";
 }
 
 function deleteLast(){
-display.value = display.value.slice(0,-1);
+    display.value = display.value.slice(0,-1);
 }
 
 function calculate(){
-try{
-display.value = eval(display.value);
-}catch{
-display.value = "Error";
-}
+    try{
+        display.value = eval(display.value);
+    }catch{
+        display.value = "Error";
+    }
 }
 </script>
 
